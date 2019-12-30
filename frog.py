@@ -4,7 +4,7 @@ import numpy as np
 
 from huygens.interf import c_vector
 
-__all__=['simulate','probability']
+__all__=['simulate','probability','harmonic']
 
 # load the lib
 _libc=ct.cdll.LoadLibrary('./bin/frog.dll')
@@ -23,15 +23,66 @@ _harmonic.argtypes=[ct.c_int]
 _harmonic.restype=ct.c_double
 
 def simulate(num_pads,num_itr):
+  '''
+  Simulate numerous processions of a frog leaping across a river to determine the average number of leaps needed.
+
+  Parameters
+  ----------
+  num_pads : int
+    The number of pads, including the other bank, the frog needs to leap.
+  num_itr : int
+    The number of times the simulation should be run.
+
+  Returns
+  -------
+  means : numpy.ndarray
+    The moving average number of leaps needed to cross the river across the simulations.
+
+  '''
   means=c_vector(ct.c_double,num_itr)
   _simulate(num_pads,num_itr,means)
   
   return np.ctypeslib.as_array(means)
 
 def probability(num_pads,num_itr):
+  '''
+  Determine the average number of leaps needed for a frog to cross a river.
+
+  Parameters
+  ----------
+  num_pads : int
+    The number of pads, including the other bank, the frog needs to leap.
+  num_itr : int
+    The number of times the simulation should be run.
+
+  Returns
+  -------
+  mean : float
+    The average number of leaps needed to cross the river.
+
+  '''
   return _probability(ct.c_int(num_pads),ct.c_int(num_itr))
 
 def harmonic(n):
+  '''
+  Determine a given harmonic number.
+
+  Parameters
+  ----------
+  n : int
+    A positive integer.
+
+  Returns
+  -------
+  h : float
+    The `n`th harmonic number.
+
+  Raises
+  ------
+  TypeError
+    If n is not a positive integer.
+
+  '''
   try:
     return _harmonic(ct.c_int(n))
   except WindowsError:
