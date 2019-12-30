@@ -47,12 +47,39 @@ BOOST_AUTO_TEST_SUITE(test_frog)
 
     // check the average of n leaps possible is close to the nth harmonic number for the first 10 n
     double sum=1.;
-    for (int itr=2;itr<10;++itr)
+    for (int itr=2;itr<11;++itr)
     {
       sum+=1./itr;
       BOOST_CHECK_CLOSE_FRACTION(average(itr,10000),sum,0.05);
     }
   }
-  
+
+  // test the simulate() function
+  BOOST_AUTO_TEST_CASE(test_simulate)
+  {
+    int n_itr=10;
+    double *mean=new double[n_itr];
+    // check the average of one leap needed is always 1
+    simulate(1,n_itr,mean);
+    for (int itr=0;itr<n_itr;++itr)
+    {
+      BOOST_CHECK(*(mean+itr)==1);
+    }
+    delete mean;
+
+    // check the average of n leaps possible is close to the nth harmonic number for the first 10 n
+    double sum=1.;
+    n_itr=10000;
+    for (int itr=2;itr<11;++itr)
+    {
+      mean=new double[n_itr];
+      sum+=1./itr; // calculate the itrth harmonic number
+      simulate(itr,n_itr,mean);
+      // the average is the last element of mean
+      BOOST_CHECK_CLOSE_FRACTION(*(mean+n_itr-1),sum,0.05);
+      delete mean;
+    }
+  }
+
 BOOST_AUTO_TEST_SUITE_END()
 } // namespace BoardTesting

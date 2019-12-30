@@ -62,3 +62,28 @@ double __declspec(dllexport) average(const int num_pads, const int num_itr)
   }
   return mean;
 }
+
+void __declspec(dllexport) simulate(const int num_pads, const int num_itr, double * const ma)
+{
+  //
+  // Determine the average number of leaps needed to reach the other bank, storing the running approximation of the mean
+  //
+  // parameters
+  // ----------
+  // num_pads : const int
+  //  - the number of pads to the other bank, including the other bank
+  // num_itr : const int
+  //  - the number of times to run the simulation
+  //    the higher num_itr is, the more accurate the approximation
+  // ma : int * const
+  //  - the moving average of the number of leaps needed to reach the other bank
+  //
+
+  double mean=0.;
+  for (int itr=0;itr<num_itr;++itr)
+  {
+    int jumps=leap(num_pads,0);
+    mean+=(jumps-mean)/(itr+1);
+    *(ma+itr)=mean;
+  }
+}
