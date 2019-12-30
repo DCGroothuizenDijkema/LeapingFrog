@@ -36,6 +36,23 @@ BOOST_AUTO_TEST_SUITE(test_frog)
       BOOST_CHECK(leap(itr,0)>=1&&leap(itr,0)<=itr);
     }
   }
+
+  // test the average() function
+  BOOST_AUTO_TEST_CASE(test_average)
+  {
+    // check no runs gives an average of 0.
+    BOOST_CHECK(average(1,0)==0.);
+    // check the average of one leap needed is always 1
+    BOOST_CHECK(average(1,10)==1.);
+
+    // check the average of n leaps possible is close to the nth harmonic number for the first 10 n
+    double sum=1.;
+    for (int itr=2;itr<10;++itr)
+    {
+      sum+=1./itr;
+      BOOST_CHECK_CLOSE_FRACTION(average(itr,10000),sum,0.05);
+    }
+  }
   
 BOOST_AUTO_TEST_SUITE_END()
 } // namespace BoardTesting
