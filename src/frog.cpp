@@ -8,7 +8,6 @@
 
 // Leaping frog simulation
 
-
 #include <frog.hpp>
 
 int leap(const int pads_left, const int leaps_made)
@@ -86,4 +85,33 @@ void __declspec(dllexport) simulate(const int num_pads, const int num_itr, doubl
     mean+=(jumps-mean)/(itr+1);
     *(ma+itr)=mean;
   }
+}
+
+double __declspec(dllexport) harmonic(const unsigned int n)
+{
+  //
+  // Calculate a given harmonic number
+  //
+  // parameters
+  // ----------
+  // n : const unsigned int
+  //  - a positive integer of which to calculate the harmonic number
+  //
+  // returns
+  // -------
+  // double
+  //  - `n`th harmonic number
+  //
+  // throws
+  // ------
+  // std::invalid_argument
+  //  - if `n` is not a positive integer
+  //
+
+  if (n<1) { throw std::invalid_argument("`n` must be a positive integer."); }
+
+  // calculate the nth harmonic number
+  double h=1.;
+  for (int itr=2;itr<=n;++itr) { h+=1./itr; }
+  return h;
 }

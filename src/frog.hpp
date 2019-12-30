@@ -10,7 +10,10 @@
 
 
 #include <random>
+#include <stdexcept>
 
 int leap(const int pads_left, const int leaps_made);
 double __declspec(dllexport) average(const int num_pads, const int num_itr);
 void __declspec(dllexport) simulate(const int num_pads, const int num_itr, double * const leaps);
+
+double __declspec(dllexport) harmonic(unsigned int n);

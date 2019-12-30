@@ -81,5 +81,16 @@ BOOST_AUTO_TEST_SUITE(test_frog)
     }
   }
 
+  // test the harmonic() function
+  BOOST_AUTO_TEST_CASE(test_harmonic)
+  {
+    // check error on n=0
+    BOOST_CHECK_THROW(harmonic(0),std::invalid_argument);
+    // check three known values
+    BOOST_CHECK(harmonic(1)==1.);
+    BOOST_CHECK(harmonic(2)==1.5);
+    BOOST_CHECK_CLOSE_FRACTION(harmonic(11),3.01988,0.0001);
+  }
+
 BOOST_AUTO_TEST_SUITE_END()
 } // namespace BoardTesting
