@@ -43,7 +43,7 @@ def run():
   num_runs=150
   run_size=10
 
-  assert num_runs%run_size==0, "`num_runs` is not a `run_size`"
+  assert num_runs%run_size==0, "`num_runs` is not a multiple of `run_size`"
 
   plot_name='LeapingFrog.png'
   image_res=1200
