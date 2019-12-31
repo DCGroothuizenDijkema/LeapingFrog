@@ -10,6 +10,9 @@
 
 #include <frog.hpp>
 
+std::random_device rd;
+std::mt19937_64 gen(rd());
+
 int leap(const int pads_left, const int leaps_made)
 {
   //
@@ -30,7 +33,7 @@ int leap(const int pads_left, const int leaps_made)
 
   if (pads_left==0) { return leaps_made; }
 
-  int jump=std::uniform_int_distribution<int>(1, pads_left)(std::mt19937_64{std::random_device{}()});
+  int jump=std::uniform_int_distribution<int>(1,pads_left)(gen);
   return leap(pads_left-jump,leaps_made+1);
 }
 
