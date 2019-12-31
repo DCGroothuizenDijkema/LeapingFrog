@@ -87,3 +87,53 @@ def harmonic(n):
     return _harmonic(ct.c_int(n))
   except WindowsError:
     raise TypeError('`n` must be a positive integer.')
+
+def simulate_py(num_pads,num_itr):
+  '''
+  Determine the average number of leaps needed to reach the other bank, storing the running approximation of the mean.
+  
+  Parameters
+  ----------
+  num_pads : int
+    The number of pads to the other bank, including the other bank.
+  num_itr : int
+    The number of times to run the simulation.
+    The higher `num_itr` is, the more accurate the approximation.
+  
+  Returns
+  -------
+  ma : numpy.ndarray
+    The moving average of the number of leaps needed to reach the other bank.
+
+  '''
+  ma=np.empty(num_itr)
+  mean=0
+
+  for itr in range(num_itr):
+    jumps=leap_py(num_pads,0)
+    mean+=(jumps-mean)/(itr+1)
+    ma[itr]=mean
+
+  return ma
+
+def leap_py(pads_left,leaps_made):
+  '''
+  Determine, using recursion, the number of leaps needed to reach the other bank.
+
+  Parameters
+  ----------
+  pads_left : int
+    The number of pads left to reach the other bank, including the other bank.
+  leaps_made : int
+    The number of leaps already made.
+
+  Returns
+  -------
+  leaps : int
+    The number of leaps needed to reach the other bank from the current pad.
+
+  '''
+  if pads_left==0: return leaps_made
+
+  leap=np.random.random_integers(1,pads_left)
+  return leap_py(pads_left-leap,leaps_made+1)

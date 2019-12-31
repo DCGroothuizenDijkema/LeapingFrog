@@ -16,7 +16,7 @@ std::mt19937_64 gen(rd());
 int leap(const int pads_left, const int leaps_made)
 {
   //
-  // Determine the number of leaps needed to reach the other bank recursively
+  // Determine, using recursion, the number of leaps needed to reach the other bank
   //
   // parameters
   // ----------
