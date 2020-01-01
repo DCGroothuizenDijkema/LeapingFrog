@@ -9,23 +9,21 @@ This programme was developed after watching [a video](https://www.youtube.com/wa
 
 ## Solution
 
-As noted by the video, the expected number of leaps taken by the frog crossing a river with any number of lily pads can be expressed by both a formula and a recurrence relation. However, as also noted by the video, the problem can be solved with a simulation.
-
-For speed in approximating the solution, a library written in C++ was built. This library contains a recursive function to determine the number of leaps to cross the river, a function to determine the expected number of leaps needed to cross the river by repeating the experiment a given number of times, and a third function which returns the moving average. This library is then interfaced with Python for the convenience of calling and visualising the results.
-
-Once I found the solution computationally, I learnt that others had analytically derived the the solution to a river with `n` possible jumps (therefore, `n-1` lily pads) was simply the nth harmonic number. I then also implemented an additional function to calculate the `n`-th harmonic number.
-
-As such, and as this programme uses repeated random sampling, it is, in effect, a Monte Carlo approximation of a mathematical constant.
-
-To execute the programme, simply call ```main.py``` with any Python interpreter (I use IPython). ```main.py``` contains further instructions on variables which can be changed.
-
-## Output
-
 The following visualisation is an example of that made by the programme, showing the approximation of the tenth harmonic number.
 
 ![Simulation Results](https://drive.google.com/uc?id=1SG7Xxey8d979ZHCJCyhAGkb-lOllLvHp)
 
 Each of the blue lines on the above plot is the moving average of the number of leaps needed to cross the river in one simulation. Each simulation repeats the experiment 1,000,000 times, and there are 150 simulations. As can be seen, each simulation approaches the true value, given by the solid red line.
+
+As noted by the video, the expected number of leaps taken by the frog crossing a river with any number of lily pads can be expressed by both a formula and a recurrence relation. However, as also noted by the video, the problem can be solved with a simulation.
+
+For speed in approximating the solution, a library written in C++ was built. This library contains a recursive function to determine the number of leaps to cross the river, a function to determine the expected number of leaps needed to cross the river by repeating the experiment a given number of times, and a third function which returns the moving average. This library is then interfaced with Python for the convenience of calling and visualising the results.
+
+Once I found the solution computationally, I learnt that others had analytically derived the the solution to a river with `n` possible jumps (therefore, `n-1` lily pads) was simply the `n`th harmonic number. I then also implemented an additional function to calculate the `n`th harmonic number.
+
+As such, and as this programme uses repeated random sampling, it is, in effect, a Monte Carlo approximation of a mathematical constant.
+
+To execute the programme, simply call ```main.py``` with any Python interpreter (I use IPython). ```main.py``` contains further instructions on variables which can be changed.
 
 ## Building
 
