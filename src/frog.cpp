@@ -32,6 +32,7 @@ int leap(const int pads_left, const int leaps_made)
   //
 
   if (pads_left==0) { return leaps_made; }
+  if (pads_left==1) { return leaps_made+1; }
 
   int jump=std::uniform_int_distribution<int>(1,pads_left)(gen);
   return leap(pads_left-jump,leaps_made+1);
