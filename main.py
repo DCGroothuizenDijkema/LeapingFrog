@@ -32,10 +32,21 @@ Instructions
 This Python script contains two functions, one for approximating a given harmonic number and one for comparing the speeds of Python and
 compiled C++.
 
+Running the Simulation
+======================
+
+Comparing Speeds
+================
+Both the `num_pads` and `num_itr` options can be set. The default values of 10 and 100,000 respectively provide a good balance between
+demonstrating the difference in speeds without taking too long (about 3 seconds in total). These values are also close to those which
+produced the plot in the README.
+
 '''
 
 def run():
   '''
+  Produce a Monte Carlo approximation, and a plot detailing the process, of a certain harmonic number.
+
   '''
   # constants
   num_pads=10
@@ -59,6 +70,7 @@ def run():
     y_label=r'Estimate of $H_{%d}$'%num_pads)
 
   # perform the simulation
+  mean=[]
   last_run=int(num_runs/run_size)-1
   data=np.empty((run_size,num_itr))
   for run in range(int(num_runs/run_size)):
@@ -66,6 +78,8 @@ def run():
       if verbose:
         print('Run: {}; Sim: {}'.format(run,sim))
       data[sim,:]=simulate(10,num_itr)
+    # keep track of the means
+    mean.append(np.mean(data[:,-1]))
     # if it's the last run, plot the actual value along with the data
     # otherwise, just plot the data
     if run==last_run:
@@ -74,6 +88,8 @@ def run():
       ax=simulation_plot(data,np.arange(num_itr),ax=ax)
 
   # output
+  if verbose:
+    print('The {} harmonic number is approximately {:.4f}'.format(ordinal.lower(),np.mean(mean)))
   if save_fig:
     plt.savefig('{}{}'.format(output_dir,plot_name),dpi=image_res,bbox_inches='tight',pad_inches=0.25)
   if show_fig:
@@ -81,6 +97,8 @@ def run():
 
 def time_comparison():
   '''
+  Compare the speeds of compiled C++ and Python code.
+
   '''
   # constants
   num_pads=10
