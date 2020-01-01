@@ -34,12 +34,26 @@ compiled C++.
 
 Running the Simulation
 ======================
+The `run()` function can be used to obtain an answer to the problem and produce a visualisation of the simulation process.
+
+`num_pads` determines the width of the river, including the other bank. `num_itr` determines the number of crossings in one run of the
+simulation while `num_runs` is the number of runs of the simulation. `run_size` is needed to minimise the amount of memory required by the
+process by splitting the simulations into batches. `num_runs` should be a multiple of `run_size`.
+
+`plot_name` gives the name of the file the plot is save to, and should include the file format. The plot is saved to the folder specified in
+`output_dir`, set at the top of this file. `image_res` gives the dots per inch of the plot
+
+If the visualisation needs to be saved, set `save_fig` to `True`; if it simply needs to be displayed, set `show_fig` to `True`. To see a
+counter as the simulations are carried out (useful if the runtime is long, therefore confirming that something is happening), and to
+display the approximation of the average, set `verbose` to True.
 
 Comparing Speeds
 ================
-Both the `num_pads` and `num_itr` options can be set. The default values of 10 and 100,000 respectively provide a good balance between
-demonstrating the difference in speeds without taking too long (about 3 seconds in total). These values are also close to those which
-produced the plot in the README.
+The `time_comparison()` function can be used to compare the speed of Python to that of compiled C++. Both the `num_pads` and `num_itr`
+options can be set. The former determines the width of the river, including the other bank, while the latter determines the number of
+crossings in one run of the simulation. The default values of 10 and 100,000, respectively, provide a good balance between demonstrating
+the difference in speeds without taking too long (about 3 seconds in total). These values are also close to those which produced the plot
+in the README.
 
 '''
 
