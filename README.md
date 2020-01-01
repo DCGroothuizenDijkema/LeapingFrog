@@ -3,9 +3,21 @@
 
 Simulating an equiprobable leaping frog
 
-## Pupose
+## Purpose
 
-This programme was developed after watching [a video](https://www.youtube.com/watch?v=ZLTyX4zL2Fc) made by [Matt Parker](https://www.youtube.com/user/standupmaths) ([standupmaths](http://standupmaths.com/)). The video contains a puzzle expounded as that of a frog crossing a river, with nine lily pads betweeen the bank it is on and the other. The frog is able to leap to any of the lily pads in front of it or the other bank and is equally likely to leap to any of them. Once it has leapt forward, it is equally likely to jump to any of the remaining pads in front of it or the other bank. The frog only moves forward. The question, thence, is what is the average number of leaps taken by the frog crossing the river.
+This programme was developed after watching [a video](https://www.youtube.com/watch?v=ZLTyX4zL2Fc) made by [Matt Parker](https://www.youtube.com/user/standupmaths) ([standupmaths](http://standupmaths.com/)). The video contains a puzzle expounded as that of a frog crossing a river, with nine lily pads between the bank it is on and the other. The frog is able to leap to any of the lily pads in front of it or the other bank and is equally likely to leap to any of them. Once it has leapt forward, it is equally likely to jump to any of the remaining pads in front of it or the other bank. The frog only moves forward. The question, thence, is what is the average number of leaps taken by the frog crossing the river.
+
+## Solution
+
+As noted by the video, the expected number of leaps taken by the frog crossing a river with any number of lily pads can be expressed by both a formula and a recurrence relation. However, as also noted by the video, the problem can be solved with a simulation.
+
+For speed in approximating the solution, a library written in C++ was built. This library contains a recursive function to determine the number of leaps to cross the river, a function to determine the expected number of leaps needed to cross the river by repeating the experiment a given number of times, and a third function which returns the moving average. This library is then interfaced with Python for the convenience of calling and visualising the results.
+
+Once I found the solution computationally, I learnt that others had analytically derived the the solution to a river with `n` possible jumps (therefore, `n-1` lily pads) was simply the nth harmonic number. I then also implemented an additional function to calculate the `n`-th harmonic number.
+
+As such, and as this programme uses repeated random sampling, it is, in effect, a Monte Carlo approximation of a mathematical constant.
+
+To execute the programme, simply call ```main.py``` with any Python interpreter (I use IPython). ```main.py``` contains further instructions on variables which can be changed.
 
 ## Output
 
@@ -17,7 +29,7 @@ Each of the blue lines on the above plot is the moving average of the number of 
 
 ## Building
 
-The programme can be built with the provided Makefile and nmake, with the following command:
+The library was developed with MSVC, can be built with the provided Makefile and nmake, with the following command:
 
 ```shell
 nmake all
