@@ -32,7 +32,8 @@ Instructions
 ============
 
 This Python script contains two functions, one for approximating a given harmonic number and one for comparing the speeds of Python and
-compiled C++.
+compiled C++. Both functions have various variables which can be changed to affect the nature of the simulation and the output produced,
+detailed in the two sections below.
 
 Running the Simulation
 ======================
@@ -51,11 +52,12 @@ display the approximation of the average, set `verbose` to True.
 
 Comparing Speeds
 ================
-The `time_comparison()` function can be used to compare the speed of Python to that of compiled C++. Both the `num_pads` and `num_itr`
-options can be set. The former determines the width of the river, including the other bank, while the latter determines the number of
-crossings in one run of the simulation. The default values of 10 and 100,000, respectively, provide a good balance between demonstrating
-the difference in speeds without taking too long (about 3 seconds in total). These values are also close to those which produced the plot
-in the README.
+The `time_comparison()` function can be used to compare the speed of Python to that of compiled C++. 
+
+Both the `num_pads` and `num_itr` options can be set. The former determines the width of the river, including the other bank, while the
+latter determines the number of crossings in one run of the simulation. The default values of 10 and 100,000, respectively, provide a good
+balance between demonstrating the difference in speeds without taking too long (about 3 seconds in total). These values are also close to
+those which produced the plot in the README.
 
 '''
 
@@ -72,6 +74,7 @@ def run():
 
   assert num_runs%run_size==0, "`num_runs` is not a multiple of `run_size`"
 
+  # output
   plot_name='LeapingFrog.png'
   image_res=1200
 
