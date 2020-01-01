@@ -15,7 +15,7 @@ import numpy as np
 from num2words import num2words
 
 from huygens.plotting import simulation_plot,setup_simulation_plot
-from frog import simulate,probability,harmonic,simulate_py
+from frog import simulate,simulate_py,harmonic
 
 output_dir='./out/' # change if you want the plots somewhere else
 try:
