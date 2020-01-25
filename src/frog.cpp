@@ -8,6 +8,7 @@
 
 // Leaping frog simulation
 
+
 #include <frog.hpp>
 
 std::random_device rd;
