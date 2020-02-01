@@ -9,12 +9,9 @@
 // Test file for LeapingFrog
 
 
-#include <iostream>
-#include <limits>
-
 #include <frog.hpp>
 
-namespace BoardTesting
+namespace FrogTesting
 {
 BOOST_AUTO_TEST_SUITE(test_frog)
 
@@ -93,4 +90,4 @@ BOOST_AUTO_TEST_SUITE(test_frog)
   }
 
 BOOST_AUTO_TEST_SUITE_END()
-} // namespace BoardTesting
+} // namespace FrogTesting

@@ -4,8 +4,8 @@
 CXX=cl
 LINK=link
 
-FLAGS=/EHsc /std:c++17 /I./src/ /c /Fo:./obj/
-TESTFLAGS=/EHsc /std:c++17 /I/lib/boost/ /I./src/ /I./test/ /c /Fo:./obj/
+FLAGS=/EHsc /std:c++17 /I./src/ /c /Fo:./obj/ /O2
+TESTFLAGS=/EHsc /std:c++17 /I/lib/boost/ /I./src/ /I./test/ /c /Fo:./obj/ /O2
 
 SRC=./src/frog.cpp
 OBJ=./obj/frog.obj

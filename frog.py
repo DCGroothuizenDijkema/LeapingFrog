@@ -20,8 +20,8 @@ __all__=['simulate','average','harmonic']
 _libc=ct.cdll.LoadLibrary('./bin/frog.dll')
 
 # extract the functions
-_simulate=getattr(_libc, '?simulate@@YAXHHQEAN@Z')
-_average=getattr(_libc, '?average@@YANHH@Z')
+_simulate=getattr(_libc,'?simulate@@YAXHHQEAN@Z')
+_average=getattr(_libc,'?average@@YANHH@Z')
 _harmonic=getattr(_libc,'?harmonic@@YANI@Z')
 
 # assign arg and return types
