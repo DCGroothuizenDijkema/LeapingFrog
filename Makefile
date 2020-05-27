@@ -21,10 +21,17 @@ TEST=test.exe
 
 all: dir $(TARGET)
 test: dir $(TEST)
+reset: clean all
 
 dir: 
 	-@ if NOT EXIST "./bin/" mkdir "./bin/"
 	-@ if NOT EXIST "./obj/" mkdir "./obj"
+
+clean:
+	-@ if EXIST "./bin/" del /F /Q /S "./bin/" > NUL
+	-@ if EXIST "./bin/" rmdir /Q /S "./bin/"
+	-@ if EXIST "./obj/" del /F /Q /S "./obj/" > NUL
+	-@ if EXIST "./obj/" rmdir /Q /S "./obj/"
 
 $(TARGET):	$(OBJ)
 	$(LINK) /DLL /OUT:./bin/$(TARGET) $(OBJ)
@@ -36,4 +43,4 @@ obj/frog.obj: ./src/frog.cpp $(INC)
 	$(CXX) $(FLAGS) ./src/frog.cpp
 
 obj/test.obj: ./test/test.cpp $(INC) $(TESTINC)
-  $(CXX) $(TESTFLAGS) ./test/test.cpp
+	$(CXX) $(TESTFLAGS) ./test/test.cpp
